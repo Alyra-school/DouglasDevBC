@@ -13,6 +13,8 @@
 # Hardhat compilation (v2) support directory
 /cache
 
+/scripts/forFork.ts
+
 # Typechain output
 /types
 

@@ -39,7 +39,13 @@ contract Voting is Ownable {
     event ProposalRegistered(uint proposalId);
     event Voted (address voter, uint proposalId);
 
-    constructor() Ownable(msg.sender) {    }
+    constructor(address _addr) payable Ownable(msg.sender) {  
+        addVoter(_addr);
+      }
+
+
+    // todo
+    // modifier constructor pour le rendre payable et ajouter un input d'address a ajouter aux voters
     
     modifier onlyVoters() {
         require(voters[msg.sender].isRegistered, "You're not a voter");
@@ -61,7 +67,7 @@ contract Voting is Ownable {
  
     // ::::::::::::: REGISTRATION ::::::::::::: // 
 
-    function addVoter(address _addr) external onlyOwner {
+    function addVoter(address _addr) public onlyOwner {
         require(workflowStatus == WorkflowStatus.RegisteringVoters, 'Voters registration is not open yet');
         require(voters[_addr].isRegistered != true, 'Already registered');
     
