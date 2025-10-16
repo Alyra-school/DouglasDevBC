@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 
-pragma solidity 0.8.26;
+pragma solidity 0.8.28;
 
 interface Deployed {
     
@@ -13,6 +13,7 @@ contract Existing {
     
     Deployed dc;
 
+ 
     function attach(address _addr) public{
         dc = Deployed(_addr);
     }
@@ -21,9 +22,15 @@ contract Existing {
         return dc.get();
     }
 
-    function setA(uint _val) public returns (uint result){
+    function setA(uint _val, address payable _addr) public returns (uint result){
         dc.set(_val);
+
+        //(bool success, bytes memory data)= _addr.call{value: 1 ether }(abi.encodeWithSignature("get()"));
+        //uint value = abi.decode(data, (uint));
+        //require (success, "Failed to send Ether");
+
         return _val;
     }
     
+
 }
