@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.28;
 
+import "hardhat/console.sol";
+
 contract Counter {
   uint public x;
 
@@ -16,6 +18,7 @@ contract Counter {
   function inc() public {
     require( x < 2, "pas trop haut");
     x++;
+    console.log("Counter inc to ", x);
     emit Increment(1);
   }
 

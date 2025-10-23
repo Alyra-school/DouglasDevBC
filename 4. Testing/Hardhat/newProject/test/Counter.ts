@@ -37,7 +37,7 @@ describe("Counter contract", function () {
       expect(await counter.x()).to.equal(1n);
     });
 
-    it.only("get storage at 1", async function () {
+    it("get storage at 1", async function () {
       await counter.inc();
       expect(await ethers.provider.getStorage(counter.target, 0)).to.equal(1n);
     });
@@ -54,7 +54,7 @@ describe("Counter contract", function () {
     });
 
 
-    it("should revert on triple inc", async function () {
+    it.only("should revert on triple inc", async function () {
       await counter.inc();
       await counter.inc();
       await expect(counter.inc()).to.be.revertedWith("pas trop haut");
@@ -74,13 +74,15 @@ describe("Counter contract", function () {
     it("Should increment blocknumber", async function () {
       const blocknumber = await ethers.provider.getBlockNumber();
       console.log("Current block number:", blocknumber);
-      //const testblocknumber = await ethers.provider.getBlockNumber();
-      //console.log("Current block number:", testblocknumber);
+
       
       await counter.putBlockNumber(blocknumber);
+      const testblocknumber = await ethers.provider.getBlockNumber();
+      console.log("Current block number:", testblocknumber);
       expect(await counter.blocknumber()).to.equal(blocknumber);
   
-      await networkHelpers.mine(5);      
+      await networkHelpers.mine(5);   
+      await networkHelpers.time.increase(600);   
       const newblocknumber = await ethers.provider.getBlockNumber();
       console.log("new block number:", newblocknumber);
 
