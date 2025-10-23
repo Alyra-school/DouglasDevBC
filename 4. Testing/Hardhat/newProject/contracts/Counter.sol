@@ -5,6 +5,7 @@ contract Counter {
   uint public x;
 
   mapping(address => uint) public balances;
+  uint public blocknumber;
 
   event Increment(uint by);
 
@@ -22,5 +23,9 @@ contract Counter {
     require(by > 0, "incBy: increment should be positive");
     x += by;
     emit Increment(by);
+  }
+
+  function putBlockNumber(uint _blocknumber) public {
+    blocknumber = _blocknumber; 
   }
 }
