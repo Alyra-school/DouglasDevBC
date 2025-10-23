@@ -1,15 +1,19 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.28;
-import "hardhat/console.sol";
+pragma solidity ^0.8.28;
 
 contract Counter {
   uint public x;
 
+  mapping(address => uint) public balances;
+
   event Increment(uint by);
 
+  constructor(){
+    balances[msg.sender] = 100;
+  }
+
   function inc() public {
-    require(x<2, "trop haut");
-    console.log("Current value of x:", x);
+    require( x < 2, "pas trop haut");
     x++;
     emit Increment(1);
   }
