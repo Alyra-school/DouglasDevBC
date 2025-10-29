@@ -7,6 +7,11 @@ import hardhatVerify from "@nomicfoundation/hardhat-verify";
 
 const config: HardhatUserConfig = {
   plugins: [hardhatToolboxMochaEthersPlugin, hardhatKeystore, hardhatVerify],
+  test: {
+    gasStats: {
+      enabled: true,
+    },
+  },
   solidity: {
     profiles: {
       default: {

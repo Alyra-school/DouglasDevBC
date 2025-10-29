@@ -54,7 +54,7 @@ describe("Counter contract", function () {
     });
 
 
-    it.only("should revert on triple inc", async function () {
+    it("should revert on triple inc", async function () {
       await counter.inc();
       await counter.inc();
       await expect(counter.inc()).to.be.revertedWith("pas trop haut");
@@ -87,7 +87,7 @@ describe("Counter contract", function () {
       console.log("new block number:", newblocknumber);
 
       await counter.putBlockNumber(newblocknumber);
-      expect(await counter.blocknumber()).to.equal(blocknumber + 6);
+      expect(await counter.blocknumber()).to.equal(blocknumber + 7);
     });
 
   });

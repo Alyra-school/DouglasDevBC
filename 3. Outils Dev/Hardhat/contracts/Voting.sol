@@ -39,14 +39,10 @@ contract Voting is Ownable {
     event ProposalRegistered(uint proposalId);
     event Voted (address voter, uint proposalId);
 
-    constructor(address _addr) payable Ownable(msg.sender) {  
-        addVoter(_addr);
-      }
+    constructor() payable Ownable(msg.sender) {}
 
 
-    // todo
-    // modifier constructor pour le rendre payable et ajouter un input d'address a ajouter aux voters
-    
+
     modifier onlyVoters() {
         require(voters[msg.sender].isRegistered, "You're not a voter");
         _;

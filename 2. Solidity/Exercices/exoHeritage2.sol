@@ -18,8 +18,11 @@ contract Existing {
         dc = Deployed(_addr);
     }
 
-    function getA() public view returns (uint result) {
+    function getA() public  returns (uint result) {
+        address addr = address(dc);
+        addr.call{value: 1 ether, gas : 25000 }(abi.encodeWithSignature("set()", 42));
         return dc.get();
+
     }
 
     function setA(uint _val, address payable _addr) public returns (uint result){
