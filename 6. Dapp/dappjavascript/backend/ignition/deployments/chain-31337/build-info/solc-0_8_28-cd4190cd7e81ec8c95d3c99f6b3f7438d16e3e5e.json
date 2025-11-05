@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-cd4190cd7e81ec8c95d3c99f6b3f7438d16e3e5e",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/SimpleStorage.sol": "project/contracts/SimpleStorage.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/SimpleStorage.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity 0.8.28;\r\n\r\ncontract SimpleStorage {\r\n    uint256 private myNumber;\r\n\r\n    function setMyNumber(uint256 _myNumber) external {\r\n        myNumber = _myNumber;\r\n    }\r\n\r\n    function getMyNumber() external view returns (uint256) {\r\n        return myNumber;\r\n    }\r\n}"
+      }
+    }
+  }
+}
